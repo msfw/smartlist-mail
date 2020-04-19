@@ -1,0 +1,10 @@
+{
+    "name": "email",
+    "routingKey": "*.email",
+    "options": {
+        "durable": true
+    },
+    "consumeOptions": {
+        "noAck": true
+    }
+}
