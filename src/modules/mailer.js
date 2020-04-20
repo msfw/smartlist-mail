@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const templateDirectory = './templates/'
+const templateDirectory = path.resolve(__dirname, '../templates')
 
 transporter.use('compile', hbs({
     viewEngine: exphbs.create({
