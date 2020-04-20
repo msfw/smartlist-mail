@@ -5,6 +5,7 @@ const mailer = require('./modules/mailer')
 const emailQueue = require('./config/queue')
 
 rabbitSubscriber([emailQueue], (message) => {
+    console.log("RECEBEU",message)
     const messageObject = JSON.parse(message)
 
     if (message !== '')
