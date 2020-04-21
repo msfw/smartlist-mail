@@ -22,7 +22,8 @@ const transporter = nodemailer.createTransport({
 var email = new Email({
     message: {
         from: 'noreply.smartlist@gmail.com'
-    }
+    },
+    transport: transporter
 })
 
 module.exports = (mail) => email.send({
