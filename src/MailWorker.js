@@ -5,9 +5,9 @@ const send = require('./modules/mailer')
 const emailQueue = require('./config/queue')
 
 rabbitSubscriber([emailQueue], (message) => {
-    console.log("RECEBEU",message)
+    console.log("RECEBEU", message)
     const messageObject = JSON.parse(message)
 
     if (message !== '')
-        send(messageObject)    
+        send(messageObject).then(success => console.log("SENT")).catch(err => console.log("ERRO", err))
 })

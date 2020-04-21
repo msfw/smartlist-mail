@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 const mailConfig = require('../config/mail')
 const hbs = require('nodemailer-express-handlebars')
 const exphbs = require('express-handlebars');
-const EmailTemplate = require('email-templates').EmailTemplate
+const Email = require('email-templates')
 const path = require('path')
 
 const transporter = nodemailer.createTransport({
@@ -18,20 +18,21 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-module.exports = (mail) => {
-    const sendMail = transporter.templateSender(new EmailTemplate(path.resolve(__dirname, `../templates/${mail.template}`)),
-     { from: 'noreply.smartlist@gmail.com' })
 
-    sendMail({
-        to: mail.to,
-        subject: mail.subject
-    }, mail.context, (err) => {
-        if (err)
-            console.log("ERRO", err)
-        else
-            console.log("SENT")
-    })
-}
+var email = new Email({
+    message: {
+        from: 'noreply.smartlist@gmail.com'
+    }
+})
+
+module.exports = (mail) => email.send({
+    template: path.resolve(__dirname, `../templates/${mail.template}`),
+    message: {
+        to: mail.to
+    },
+    locals: mail.context
+})
+
 
 // const templateDirectory = path.resolve(__dirname, '../templates/')
 
