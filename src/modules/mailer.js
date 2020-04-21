@@ -27,7 +27,7 @@ var email = new Email({
 })
 
 module.exports = (mail) => email.send({
-    template: path.resolve(__dirname, `../templates/${mail.context}`),
+    template: path.resolve(__dirname, `../templates/${mail.template}`),
     message: {
         to: mail.to,
         subject: mail.subject
