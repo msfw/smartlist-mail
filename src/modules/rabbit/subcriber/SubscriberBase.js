@@ -15,7 +15,7 @@ const subscriberBase = (queues = [], OnCaptureMessage) => {
             })
         } else
             console.error("Please inform queues to subscriber.")
-    }, true)
+    })
 }
 
 module.exports = subscriberBase
