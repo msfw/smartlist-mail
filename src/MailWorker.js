@@ -4,7 +4,7 @@ const rabbitSubscriber = require('./modules/rabbit/subcriber/SubscriberBase')
 const send = require('./modules/mailer')
 const emailQueue = require('./config/queue')
 
-setInterval(rabbitSubscriber([emailQueue], (message) => {
+setInterval(_ => rabbitSubscriber([emailQueue], (message) => {
     console.log("RECEBEU", message)
     const messageObject = JSON.parse(message)
 
